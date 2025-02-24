@@ -1,12 +1,36 @@
-async function fetchRamdonWordsPtbr() {
-  try {
-      const resposta = await fetch("https://api.dicionario-aberto.net/random");
-      if (!resposta.ok) throw new Error("Erro ao buscar a palavra");
 
-      const dados = await resposta.json();
-      console.log("Palavra:", dados.word);
-  } catch (erro) {
-      console.error("Erro:", erro.message);
+//score saver
+if (!localStorage.score) {
+  localStorage.clickcount = 0;
+} 
+
+//score increment
+function scoreUp() {
+  localStorage.score = Number(localStorage.score)+1;
+  console.log(localStorage.score)
+}
+
+async function fetchRandomWordsPtbr() {
+  while (true) {
+      try {
+          const resposta = await fetch("https://api.dicionario-aberto.net/random");
+          if (!resposta.ok) throw new Error("Erro ao buscar a palavra");
+
+          const dados = await resposta.json();
+          const palavra = dados.word;
+
+          const possuiAcento = /[áàâãéèêíïóòôõúüç]/i.test(palavra);
+
+          if (!possuiAcento) {
+              console.log("Palavra encontrada:", palavra);
+              break;
+          } else {
+              console.log("Palavra possui acento, tentando novamente:", palavra);
+          }
+      } catch (erro) {
+          console.error("Erro:", erro.message);
+      }
   }
 }
-fetchRamdonWordsPtbr();
+
+fetchRandomWordsPtbr();
