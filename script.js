@@ -38,4 +38,10 @@ async function fetchRandomWordsPtbr() {
   }
 }
 
+function acerto() {
+  var inputValue = document.getElementById("chuteInput").value;
+  console.log(palavra);
+  
+}
+
 fetchRandomWordsPtbr();
