@@ -43,4 +43,4 @@ function acerto() {
   
 }
 
-fetchRandomWordsPtbr();
+fetchRandomWordPtbr();
