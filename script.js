@@ -15,32 +15,31 @@ function scoreReset() {
   localStorage.score = Number(0);
 }
 
-async function fetchRandomWordsPtbr() {
-  while (true) {
-      try {
-          const resposta = await fetch("https://api.dicionario-aberto.net/random");
-          if (!resposta.ok) throw new Error("Erro ao buscar a palavra");
+async function fetchRandomWordPtbr() {
+  try {
+      const resposta = await fetch("https://api.dicionario-aberto.net/random");
+      if (!resposta.ok) throw new Error("Erro ao buscar a palavra");
 
-          const dados = await resposta.json();
-          const palavra = dados.word;
-
-          const possuiAcento = /[áàâãéèêíïóòôõúüç]/i.test(palavra);
-
-          if (!possuiAcento) {
-              console.log("Palavra encontrada:", palavra);
-              break;
-          } else {
-              console.log("Palavra possui acento, tentando novamente:", palavra);
-          }
-      } catch (erro) {
-          console.error("Erro:", erro.message);
-      }
+      const dados = await resposta.json();
+      return dados.word;
+  } catch (erro) {
+      console.error("Erro ao buscar a palavra:", erro.message);
+      return null;
   }
+}
+
+
+function removerAcentos(palavra) {
+  return palavra.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+function paraLowerCase(palavra) {
+  return palavra.toLowerCase();
 }
 
 function acerto() {
   var inputValue = document.getElementById("chuteInput").value;
-  console.log(palavra);
+  console.log(inputValue);
   
 }
 
