@@ -10,6 +10,11 @@ function scoreUp() {
   console.log(localStorage.score)
 }
 
+//reset score
+function scoreReset() {
+  localStorage.score = Number(0);
+}
+
 async function fetchRandomWordsPtbr() {
   while (true) {
       try {
