@@ -28,7 +28,6 @@ async function fetchRandomWordPtbr() {
   }
 }
 
-
 function removerAcentos(palavra) {
   return palavra.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
@@ -38,9 +37,18 @@ function paraLowerCase(palavra) {
 }
 
 function acerto() {
-  var inputValue = document.getElementById("chuteInput").value;
+  var inputValue = toString(document.getElementById("chuteInput").value); 
   console.log(inputValue);
+  console.log(palavra);
+  console.log(inputValue.length);
   
+  if(inputValue === palavra) {
+    console.log("funcionou");
+  }else{
+    console.log("inferno");
+    
+  }
 }
 
-fetchRandomWordPtbr();
+const palavra = fetchRandomWordPtbr();
+console.log(palavra);
