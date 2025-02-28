@@ -29,12 +29,12 @@ async function fetchRandomWordPtbr() {
 }
 
 function escritorCodificado(secreto) {
-  var ul = document.createElement('ul');
+  let ul = document.createElement('ul');
   ul.setAttribute('id','proList');
   ul.setAttribute('class' , 'listaUl')
   document.getElementById('listaDiv').appendChild(ul);
   for (let i = 0; i < secreto.length; i++) {
-    var li = document.createElement('li');
+    let li = document.createElement('li');
     li.setAttribute('class','item');
     li.setAttribute('id', "item"+i );
     ul.appendChild(li);
@@ -66,7 +66,7 @@ function paraLowerCase(palavra) {
 }
 
 function acerto() {
-  var inputValue = document.getElementById("chuteInput").value; 
+  let inputValue = document.getElementById("chuteInput").value; 
   
   if(inputValue.length === 1) {
     if (palavra.includes(inputValue)) {
@@ -85,7 +85,7 @@ function acerto() {
   }
 }
 
-var input = document.getElementById("chuteInput");
+let input = document.getElementById("chuteInput");
 input.addEventListener("keypress", function(event) {
   if (event.key === "Enter") {
     event.preventDefault();
@@ -93,7 +93,7 @@ input.addEventListener("keypress", function(event) {
   }
 });
 
-var palavra = "";
+let palavra = "";
 fetchRandomWordPtbr().then((result) => {
   palavra = result
   console.log(palavra);
