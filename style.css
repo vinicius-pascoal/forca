@@ -1,0 +1,7 @@
+.listaUl {
+  list-style: none;
+  display: flex;
+}
+.listaUl li {
+  margin-right: 2px;
+}

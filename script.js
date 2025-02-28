@@ -28,6 +28,21 @@ async function fetchRandomWordPtbr() {
   }
 }
 
+function escritorCodificado(secreto) {
+  var ul = document.createElement('ul');
+  ul.setAttribute('id','proList');
+  ul.setAttribute('class' , 'listaUl')
+  document.getElementById('listaDiv').appendChild(ul);
+  for (let i = 0; i < secreto.length; i++) {
+    console.log(i);
+    var li = document.createElement('li');
+    li.setAttribute('class','item');
+    ul.appendChild(li);
+
+    li.innerHTML=li.innerHTML + " _ ";
+  }
+}
+
 function removerAcentos(palavra) {
   return palavra.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
@@ -57,4 +72,5 @@ var palavra = "";
 fetchRandomWordPtbr().then((result) => {
   palavra = result
   console.log(palavra);
+  escritorCodificado(palavra);
 });
