@@ -27,7 +27,12 @@ async function fetchRandomWordPtbr() {
       if (!resposta.ok) throw new Error("Erro ao buscar a palavra");
 
       const dados = await resposta.json();
-      return dados.word;
+      if (dados.word.length > 6) {
+        return fetchRandomWordPtbr()
+      }else{
+        return dados.word;
+      }
+
   } catch (erro) {
       console.error("Erro ao buscar a palavra:", erro.message);
       return null;
@@ -57,8 +62,8 @@ function escritorVitoria() {
 
 function colocaLetra(letra) {
   for (let index = 0; index < palavra.length; index++) {
-    rotacionar("item"+index)
     if (letra === palavraNASS.charAt(index)) {
+      rotacionar("item"+index)
       document.getElementById("item"+index).innerHTML = palavra.charAt(index)
     }
   }
