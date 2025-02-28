@@ -43,6 +43,12 @@ function escritorCodificado(secreto) {
   }
 }
 
+function escritorVitoria() {
+  for (let index = 0; index < palavra.length; index++) {
+    document.getElementById("item"+index).innerHTML = palavra.charAt(index)
+  }
+}
+
 function colocaLetra(letra) {
   var posicao = palavra.indexOf(letra);
   document.getElementById("item"+posicao).innerHTML = letra
@@ -69,6 +75,7 @@ function acerto() {
     }
   }else{
     if (inputValue === palavra) {
+      escritorVitoria()
       console.log("acertou");
     }else{
       console.log("errou");
