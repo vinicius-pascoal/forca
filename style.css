@@ -18,7 +18,7 @@
 
 .box {
   padding: 1vh 1vw;
-  height: 30vh;
+  height: fit-content;
   min-height: fit-content;
   background: #111845ee;
   box-shadow: 0 20px 50px rgb(23, 32, 90);
