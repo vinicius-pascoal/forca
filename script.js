@@ -108,6 +108,9 @@ function acerto() {
       escritorVitoria()
       scoreUp()
       alert("acertou");
+      setTimeout(() => {
+        location.reload();
+      }, 5000);
     }else{
       alert("errou");
       escritorVitoria()
