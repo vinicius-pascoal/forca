@@ -84,6 +84,7 @@ function contadorErro() {
     desenharForca(erros)
   }else{
     alert("infelizmente perdeu");
+    escritorVitoria()
   }
 }
 
