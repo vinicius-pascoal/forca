@@ -34,13 +34,19 @@ function escritorCodificado(secreto) {
   ul.setAttribute('class' , 'listaUl')
   document.getElementById('listaDiv').appendChild(ul);
   for (let i = 0; i < secreto.length; i++) {
-    console.log(i);
     var li = document.createElement('li');
     li.setAttribute('class','item');
+    li.setAttribute('id', "item"+i );
     ul.appendChild(li);
 
     li.innerHTML=li.innerHTML + " _ ";
   }
+}
+
+function colocaLetra(letra) {
+  var posicao = palavra.indexOf(letra);
+  document.getElementById("item"+posicao).innerHTML = letra
+  console.log(posicao);
 }
 
 function removerAcentos(palavra) {
@@ -53,17 +59,19 @@ function paraLowerCase(palavra) {
 
 function acerto() {
   var inputValue = document.getElementById("chuteInput").value; 
-  console.log(inputValue);
-  console.log(palavra);
-  console.log(inputValue.length);
   
   if(inputValue.length === 1) {
     if (palavra.includes(inputValue)) {
+      colocaLetra(inputValue)
       console.log("possui");
+    }else{
+      console.log("errou");
     }
   }else{
     if (inputValue === palavra) {
       console.log("acertou");
+    }else{
+      console.log("errou");
     }
   }
 }
