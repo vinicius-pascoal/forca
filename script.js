@@ -37,18 +37,24 @@ function paraLowerCase(palavra) {
 }
 
 function acerto() {
-  var inputValue = toString(document.getElementById("chuteInput").value); 
+  var inputValue = document.getElementById("chuteInput").value; 
   console.log(inputValue);
   console.log(palavra);
   console.log(inputValue.length);
   
-  if(inputValue === palavra) {
-    console.log("funcionou");
+  if(inputValue.length === 1) {
+    if (palavra.includes(inputValue)) {
+      console.log("possui");
+    }
   }else{
-    console.log("inferno");
-    
+    if (inputValue === palavra) {
+      console.log("acertou");
+    }
   }
 }
 
-const palavra = fetchRandomWordPtbr();
-console.log(palavra);
+var palavra = "";
+fetchRandomWordPtbr().then((result) => {
+  palavra = result
+  console.log(palavra);
+});
