@@ -1,18 +1,24 @@
-
+document.getElementById("pontuacao").innerHTML = localStorage.score
 //score saver
 if (!localStorage.score) {
-  localStorage.clickcount = 0;
+  localStorage.score = 0;
 } 
 
 //score increment
 function scoreUp() {
   localStorage.score = Number(localStorage.score)+1;
+  document.getElementById("pontuacao").innerHTML = localStorage.score
   console.log(localStorage.score)
 }
 
 //reset score
 function scoreReset() {
   localStorage.score = Number(0);
+}
+
+function rotacionar(minhaDiv) {
+  var div = document.getElementById(minhaDiv);
+  div.style.transform = "rotate(360deg)"; // Rotaciona 360 graus
 }
 
 async function fetchRandomWordPtbr() {
@@ -51,8 +57,9 @@ function escritorVitoria() {
 
 function colocaLetra(letra) {
   for (let index = 0; index < palavra.length; index++) {
-    if (letra === palavra.charAt(index)) {
-      document.getElementById("item"+index).innerHTML = letra
+    rotacionar("item"+index)
+    if (letra === palavraNASS.charAt(index)) {
+      document.getElementById("item"+index).innerHTML = palavra.charAt(index)
     }
   }
 }
@@ -69,28 +76,31 @@ let erros = 0
 function contadorErro() {
   if (erros < 6) {
     erros += 1
+    desenharForca(erros)
   }else{
-    console.log("perdeu");
+    alert("infelizmente perdeu");
   }
 }
 
 function acerto() {
   let inputValue = document.getElementById("chuteInput").value; 
+  let inputmini = paraLowerCase(inputValue)
+  let inputTratado = removerAcentos(inputmini)
   
-  if(inputValue.length === 1) {
-    if (palavra.includes(inputValue)) {
-      colocaLetra(inputValue)
-      console.log("possui");
+  if(inputTratado.length === 1) {
+    if (palavra.includes(inputTratado)) {
+      colocaLetra(inputTratado)
     }else{
       contadorErro()
       console.log("errou");
     }
   }else{
-    if (inputValue === palavra) {
+    if (inputTratado === palavraNASS) {
       escritorVitoria()
-      console.log("acertou");
+      scoreUp()
+      alert("acertou");
     }else{
-      console.log("errou");
+      alert("errou");
     }
   }
 }
@@ -103,9 +113,28 @@ input.addEventListener("keypress", function(event) {
   }
 });
 
+function desenharForca(tentativa) {
+  // Esconde todas as partes
+  document.getElementById('cabeça').style.display = 'none';
+  document.getElementById('torso').style.display = 'none';
+  document.getElementById('braçoEsquerdo').style.display = 'none';
+  document.getElementById('braçoDireito').style.display = 'none';
+  document.getElementById('pernaDireita').style.display = 'none';
+  document.getElementById('pernaEsquerda').style.display = 'none';
+  
+  // Mostra as partes conforme a tentativa
+  if (tentativa >= 1) document.getElementById('cabeça').style.display = 'block';
+  if (tentativa >= 2) document.getElementById('torso').style.display = 'block';
+  if (tentativa >= 3) document.getElementById('braçoEsquerdo').style.display = 'block';
+  if (tentativa >= 4) document.getElementById('braçoDireito').style.display = 'block';
+  if (tentativa >= 5) document.getElementById('pernaDireita').style.display = 'block';
+  if (tentativa >= 6) document.getElementById('pernaEsquerda').style.display = 'block';
+}
+
 let palavra = "";
+let palavraNASS = "";
 fetchRandomWordPtbr().then((result) => {
   palavra = result
-  console.log(palavra);
+  palavraNASS = removerAcentos(result)
   escritorCodificado(palavra);
 });
