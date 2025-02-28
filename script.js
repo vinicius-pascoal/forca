@@ -65,6 +65,15 @@ function paraLowerCase(palavra) {
   return palavra.toLowerCase();
 }
 
+let erros = 0
+function contadorErro() {
+  if (erros < 6) {
+    erros += 1
+  }else{
+    console.log("perdeu");
+  }
+}
+
 function acerto() {
   let inputValue = document.getElementById("chuteInput").value; 
   
@@ -73,6 +82,7 @@ function acerto() {
       colocaLetra(inputValue)
       console.log("possui");
     }else{
+      contadorErro()
       console.log("errou");
     }
   }else{
