@@ -85,6 +85,9 @@ function contadorErro() {
   }else{
     alert("infelizmente perdeu");
     escritorVitoria()
+    setTimeout(() => {
+      location.reload();
+    }, 5000);
   }
 }
 
@@ -107,6 +110,10 @@ function acerto() {
       alert("acertou");
     }else{
       alert("errou");
+      escritorVitoria()
+      setTimeout(() => {
+        location.reload();
+      }, 5000);
     }
   }
 }
