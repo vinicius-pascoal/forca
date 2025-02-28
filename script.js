@@ -83,6 +83,14 @@ function acerto() {
   }
 }
 
+var input = document.getElementById("chuteInput");
+input.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    document.getElementById("chute").click();
+  }
+});
+
 var palavra = "";
 fetchRandomWordPtbr().then((result) => {
   palavra = result
