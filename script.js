@@ -50,9 +50,11 @@ function escritorVitoria() {
 }
 
 function colocaLetra(letra) {
-  var posicao = palavra.indexOf(letra);
-  document.getElementById("item"+posicao).innerHTML = letra
-  console.log(posicao);
+  for (let index = 0; index < palavra.length; index++) {
+    if (letra === palavra.charAt(index)) {
+      document.getElementById("item"+index).innerHTML = letra
+    }
+  }
 }
 
 function removerAcentos(palavra) {
