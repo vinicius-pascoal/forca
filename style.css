@@ -20,11 +20,14 @@
   padding: 1vh 1vw;
   height: fit-content;
   min-height: fit-content;
-  background: #111845ee;
-  box-shadow: 0 20px 50px rgb(23, 32, 90);
-  border: 2px solid #2a3cad;
   color: white;
   padding: 20px;
+
+  --list: #111845ee, #38417eee;
+  --grad: linear-gradient(45deg, var(--list));
+  border: solid 4px #0000;
+  border-radius: 1em;
+  background: conic-gradient(rgb(0 0 0/ .75) 0 0) padding-box,var(--grad) border-box;
 }
 
 .titulo{
@@ -83,6 +86,7 @@
   border-top-right-radius: 10px;
   border-bottom-left-radius: 10px;
   transition: transform 1s ease-in-out;
+
 }
 
 .reset {
